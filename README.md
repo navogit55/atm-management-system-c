@@ -230,9 +230,7 @@ Deposit successful. New balance: 500.00
 
 ## Demo
 
-A short demonstration GIF or video can be placed here.
-
-![Demo](docs/images/demo.gif)
+![ATM Management System Demo](docs/images/demo.gif)
 
 ## Screenshots
 
@@ -246,8 +244,6 @@ The following screenshots illustrate the application in action.
 | ![Admin Dashboard](docs/images/admin-dashboard.png) | Administrative dashboard and system summary |
 | ![Transaction History](docs/images/transaction-history.png) | Mini statement and recent transactions |
 | ![Repository Structure](docs/images/repository-structure.png) | Project file layout |
-
-These placeholders can be replaced with actual screenshots before publishing.
 
 ## Security Considerations
 
