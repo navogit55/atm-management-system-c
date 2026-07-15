@@ -1,0 +1,22 @@
+# Object files
+*.o
+
+# Executables
+atm_client
+atm_server
+
+# Runtime data
+data/atm.db
+data/*.txt
+data/*.dat
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
