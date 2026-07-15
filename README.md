@@ -1,6 +1,13 @@
 # ATM Management System
 
-A client-server ATM management system written in C, demonstrating socket programming, SQLite-backed persistence, and modular C architecture.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![C11](https://img.shields.io/badge/C-11-blue.svg)](https://en.wikipedia.org/wiki/C11_(C_standard_revision))
+[![SQLite](https://img.shields.io/badge/SQLite-3-003B57.svg?logo=sqlite)](https://www.sqlite.org)
+[![POSIX](https://img.shields.io/badge/POSIX-compatible-004080.svg)](https://en.wikipedia.org/wiki/POSIX)
+[![Linux](https://img.shields.io/badge/Linux-supported-FCC624.svg?logo=linux)](https://www.linux.org)
+[![macOS](https://img.shields.io/badge/macOS-supported-000000.svg?logo=apple)](https://www.apple.com/macos)
+
+A client-server ATM management system written in C using POSIX sockets, SQLite, SHA-256 salted hashing, and a modular architecture.
 
 ## Features
 
@@ -22,7 +29,7 @@ A client-server ATM management system written in C, demonstrating socket program
 - Edit and delete accounts
 - View any account's statement or monthly summary
 - View recent transactions across the system
-- Aministrator password management
+- Administrator password management
 
 **Security**
 - PINs and passwords hashed with SHA-256 + per-account 64-bit random salt
@@ -43,7 +50,7 @@ A client-server ATM management system written in C, demonstrating socket program
                              │ plaintext protocol
                     ┌────────▼─────────┐
                     │   atm_server     │
-                    │  (request dispatch) │
+                    │  (request dispatch)
                     └────────┬─────────┘
                              │
               ┌──────────────┼──────────────┐
@@ -80,7 +87,7 @@ A client-server ATM management system written in C, demonstrating socket program
 ## Project Structure
 
 ```
-ATM_Proj/
+atm-management-system-c/
 ├── include/            # Header files
 │   ├── account.h
 │   ├── auth.h
@@ -103,7 +110,11 @@ ATM_Proj/
 │   ├── utils.c        # Utility functions
 │   └── protocol.c     # Wire protocol
 ├── data/              # Runtime data (gitignored)
+├── docs/              # Documentation
+│   ├── github-topics.md
+│   └── release-notes-v1.0.0.md
 ├── tests/             # Test scripts
+├── .github/           # CI/CD workflows
 ├── Makefile
 ├── README.md
 ├── LICENSE            # MIT
@@ -139,8 +150,8 @@ brew install sqlite3
 ## Build
 
 ```bash
-git clone <repo-url>
-cd ATM_Proj
+git clone https://github.com/navogit55/atm-management-system-c.git
+cd atm-management-system-c
 make
 ```
 
@@ -169,8 +180,8 @@ export ATM_ADMIN_PASSWORD="YourSecurePassword123"
 The server defaults to port 5555 and stores data in `data/atm.db`.  
 On first run, it creates an admin account using the environment variables above.
 
-> **Warning:** Never use weak/default admin credentials in any environment
-> that matters. The admin password must be at least 8 characters.
+> **Warning:** Never use weak or default admin credentials in any environment
+> that matters. The admin password must be at least 8 characters long.
 
 ### 2. Connect with the client
 
@@ -217,16 +228,33 @@ Enter amount to deposit: 500.00
 Deposit successful. New balance: 500.00
 ```
 
+## Demo
+
+A short demonstration GIF or video can be placed here.
+
+![Demo](docs/images/demo.gif)
+
 ## Screenshots
 
-_(Screenshots can be added here for the GitHub README)_
+The following screenshots illustrate the application in action.
+
+| Screen | Description |
+|--------|-------------|
+| ![Server Startup](docs/images/server-startup.png) | Server boot sequence and log output |
+| ![Customer Login](docs/images/customer-login.png) | Customer authentication flow |
+| ![Customer Dashboard](docs/images/customer-dashboard.png) | Customer menu with account operations |
+| ![Admin Dashboard](docs/images/admin-dashboard.png) | Administrative dashboard and system summary |
+| ![Transaction History](docs/images/transaction-history.png) | Mini statement and recent transactions |
+| ![Repository Structure](docs/images/repository-structure.png) | Project file layout |
+
+These placeholders can be replaced with actual screenshots before publishing.
 
 ## Security Considerations
 
 ### What This Project Does Right
 
 - **SHA-256 with salted hashes:** PINs and passwords are hashed with SHA-256
-  and a per-account/ per-admin 64-bit random salt before storage.
+  and a per-account or per-admin 64-bit random salt before storage.
 - **No plaintext storage:** Raw PINs and passwords are never written to disk.
 - **Account lockout:** After 3 failed login attempts, the account is locked
   and must be unlocked by an administrator.
@@ -255,7 +283,7 @@ _(Screenshots can be added here for the GitHub README)_
   brute-force and GPU-based attacks.
 - **Sequential client handling:** The server handles one client at a time.
   A concurrent production server would use threading, forking, or an event
-  loop (e.g., `epoll`/`kqueue`).
+  loop (e.g., `epoll` or `kqueue`).
 - **Single admin account:** The current schema supports multiple admin
   accounts, but the seeding and admin login logic assume a single admin
   for simplicity.

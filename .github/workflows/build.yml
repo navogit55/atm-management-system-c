@@ -1,0 +1,27 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install SQLite3 development package
+      run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
+
+    - name: Build
+      run: make
+
+    - name: Test
+      run: make test
+      env:
+        ATM_ADMIN_USERNAME: admin
+        ATM_ADMIN_PASSWORD: SecurePass123
