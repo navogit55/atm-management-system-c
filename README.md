@@ -50,22 +50,22 @@ A client-server ATM management system written in C using POSIX sockets, SQLite, 
                              │ plaintext protocol
                     ┌────────▼─────────┐
                     │   atm_server     │
-                    │  (request dispatch)
+                    │(request dispatch)│
                     └────────┬─────────┘
                              │
               ┌──────────────┼──────────────┐
               │              │              │
-        ┌─────▼────┐  ┌─────▼────┐  ┌─────▼────┐
-        │  auth.c  │  │account.c │  │database.c│
-        │(login,   │  │(balance, │  │(SQLite   │
-        │ create,  │  │ transfer,│  │ core)    │
-        │ admin)   │  │ stmts)   │  │          │
-        └──────────┘  └──────────┘  └─────┬────┘
-                                          │
-                                    ┌─────▼────┐
-                                    │  SQLite  │
-                                    │  (data/) │
-                                    └──────────┘
+        ┌─────▼────┐   ┌─────▼────┐   ┌─────▼────┐
+        │  auth.c  │   │account.c │   │database.c│
+        │ (login,  │   │(balance, │   │ (SQLite  │
+        │  create, │   │ transfer,│   │  core)   │
+        │  admin)  │   │  stmts)  │   │          │
+        └──────────┘   └──────────┘   └─────┬────┘
+                                            │
+                                      ┌─────▼────┐
+                                      │  SQLite  │
+                                      │  (data/) │
+                                      └──────────┘
 ```
 
 ### Modules
